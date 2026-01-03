@@ -1,8 +1,16 @@
-# Real Estate Fullstack Management System
+# 🏢 Real Estate Fullstack Management System
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Node.js-18+-green" />
+  <img src="https://img.shields.io/badge/Express.js-Backend-blue" />
+  <img src="https://img.shields.io/badge/MongoDB-Database-brightgreen" />
+  <img src="https://img.shields.io/badge/React-Vite-61DAFB" />
+  <img src="https://img.shields.io/badge/JWT-Auth-orange" />
+</p>
 
 A full‑stack real estate management application for managing buildings, apartments, tenants, and automated annual rent updates.
 
-## Features
+## ✨ Features
 
 * Admin authentication using JWT
 * Manage buildings and apartments
@@ -11,7 +19,7 @@ A full‑stack real estate management application for managing buildings, apartm
 * RESTful API built with Node.js, Express, and MongoDB
 * Full‑stack setup with separate client and server
 
-## Tech Stack
+## 🛠️ Tech Stack
 
 ### Backend
 
@@ -25,7 +33,7 @@ A full‑stack real estate management application for managing buildings, apartm
 
 * Vite + React
 
-## Project Structure
+## 🗂️ Project Structure
 
 ```
 real-estate-fullstack/
@@ -49,7 +57,7 @@ real-estate-fullstack/
 └── README.md
 ```
 
-## Installation & Setup
+## ⚙️ Installation & Setup
 
 ### 1. Clone the repository
 
@@ -84,7 +92,7 @@ npm run dev
 
 This uses **concurrently** to start both servers.
 
-## API Documentation
+## 📡 API Documentation
 
 ### Auth
 
@@ -168,14 +176,14 @@ POST /api/rent/update
 * Runs **daily at 1:00 AM**
 * Increases rent based on contract anniversary
 
-## Rent Update Logic
+## 🔁 Rent Update Logic
 
 * Apartment must be `Occupied`
 * `contractStartDate` must exist
 * `rentIncreasePerYear` > 0
 * Increase applies only on yearly anniversary
 
-## Scripts
+## ▶️ Scripts
 
 ```json
 "scripts": {
@@ -185,14 +193,14 @@ POST /api/rent/update
 }
 ```
 
-## Future Improvements
+## 🚀 Future Improvements
 
 * Role‑based access control
 * Dashboard analytics
 * Payment tracking
 * Export reports (PDF / Excel)
 
-## Author
+## 👨‍💻 Author
 
 **Marwan Elmasrry**
 
