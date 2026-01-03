@@ -1,0 +1,27 @@
+header{
+    background-color: #1A3D63;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 5rem 20px 5rem;
+    font-size: 1.3rem;
+}
+header .links{
+    display: flex;
+    gap: 2rem;
+}
+header .links a{
+    color: white;
+    text-decoration: none;
+    border-bottom: 3px solid transparent;
+    transition: border-bottom 0.3s ease;
+}
+header .links a.active{
+    border-bottom: 3px solid white;
+}
+header .links a:hover{
+    border-bottom: 3px solid rgba(255, 255, 255, 0.5);
+}
+header .brand-name{
+    color: white;
+    font-weight: bold;
+}

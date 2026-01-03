@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap');
+
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.login-page::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.login-card {
+  position: relative;
+  z-index: 1;
+  width:420px;
+  height: 420px;
+  padding: 26px 28px 30px;
+  border-radius: 18px;
+  background: #11191C;
+  opacity: .9;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.4);
+  color: #f8f9ff;
+}
+
+.login-card h2 {
+  margin: 0 0 20px;
+  font-size:30px;
+  text-align: center;
+  font-weight: 200;
+}
+
+.field-label {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 4px;
+  opacity: 0.85;
+}
+
+.field-input {
+  font-family: "Fugaz One", sans-serif;
+  width: 100%;
+  height: 34px;
+  border: none;
+  font-size: 20px;
+  border-bottom: 2px solid rgb(255, 255, 255);
+  background: transparent;
+  color: #f8f9ff;
+  padding: 0 14px;
+  margin-bottom: 14px;
+}
+
+.field-input:focus {
+  outline: none;
+  border-color: #ffffff;
+}
+.btn-center{
+  display: flex;
+  justify-content: center;
+}
+.primary-btn.full-width {
+  border-radius: 0;
+  border: none;
+  border-bottom: 2px solid rgb(255, 255, 255);
+  background: transparent;
+  color: #fff;
+  font-size: 17px;
+  padding: 10px;
+  padding-bottom: 5px;
+  cursor: pointer;
+}
+
