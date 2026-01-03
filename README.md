@@ -4,7 +4,8 @@
   <img src="https://img.shields.io/badge/Node.js-18+-green" />
   <img src="https://img.shields.io/badge/Express.js-Backend-blue" />
   <img src="https://img.shields.io/badge/MongoDB-Database-brightgreen" />
-  <img src="https://img.shields.io/badge/React-Vite-61DAFB" />
+  <img src="https://img.shields.io/badge/React-Frontend-61DAFB" />
+  <img src="https://img.shields.io/badge/Axios-HTTP-blueviolet" />
   <img src="https://img.shields.io/badge/JWT-Auth-orange" />
 </p>
 
@@ -31,7 +32,10 @@ A full‑stack real estate management application for managing buildings, apartm
 
 ### Frontend
 
-* Vite + React
+* React (CRA)
+* React Router DOM
+* Axios (centralized API instance)
+* Web Vitals
 
 ## 🗂️ Project Structure
 
@@ -91,6 +95,33 @@ npm run dev
 ```
 
 This uses **concurrently** to start both servers.
+
+## 🌐 Frontend Configuration
+
+### Axios Instance
+
+A centralized Axios instance is used for all API requests:
+
+```js
+import axios from "axios";
+
+const api = axios.create({
+  baseURL: "http://localhost:5000/api",
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+
+export default api;
+```
+
+This ensures:
+
+* Single API base URL
+* Clean and reusable HTTP calls
+* Easy future environment switching
+
+---
 
 ## 📡 API Documentation
 
