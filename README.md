@@ -66,7 +66,7 @@ real-estate-fullstack/
 ### 1. Clone the repository
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/MARWAN-elmasrry/Blue-real-Estate.git
 cd real-estate-fullstack
 ```
 
