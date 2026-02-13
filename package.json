@@ -1,9 +1,9 @@
 {
-  "name": "real-estate-fullstack",
+  "name": "blue-real-estate",
   "private": true,
   "scripts": {
-    "server": "npm run dev --prefix server",
-    "client": "npm run dev --prefix client",
+    "server": "npm run dev --prefix back",
+    "client": "npm run dev --prefix front",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "devDependencies": {
