@@ -1,240 +1,136 @@
-# 🏢 Real Estate Fullstack Management System
+# 🏢 Blue Real Estate
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Node.js-18+-green" />
-  <img src="https://img.shields.io/badge/Express.js-Backend-blue" />
-  <img src="https://img.shields.io/badge/MongoDB-Database-brightgreen" />
-  <img src="https://img.shields.io/badge/React-Frontend-61DAFB" />
-  <img src="https://img.shields.io/badge/Axios-HTTP-blueviolet" />
-  <img src="https://img.shields.io/badge/JWT-Auth-orange" />
-</p>
+Blue Real Estate is a full-stack property management system built for managing buildings, apartments, tenants, and automatic yearly rent increases.
 
-A full‑stack real estate management application for managing buildings, apartments, tenants, and automated annual rent updates.
+## ✨ What it does
 
-## ✨ Features
+- Secure admin login with JWT
+- Add and manage buildings and apartment units
+- Update apartment occupancy and tenant contract data
+- Clear apartment data when units become vacant
+- Run rent updates manually or automatically on a schedule
 
-* Admin authentication using JWT
-* Manage buildings and apartments
-* Track tenant information and rental contracts
-* Automatic annual rent increase (manual trigger + cron job)
-* RESTful API built with Node.js, Express, and MongoDB
-* Full‑stack setup with separate client and server
+## 🧰 Tech stack
 
-## 🛠️ Tech Stack
+### Backend (`back/`)
+- Node.js
+- Express.js
+- MongoDB + Mongoose
+- JWT authentication
+- node-cron
 
-### Backend
+### Frontend (`front/`)
+- React (Create React App)
+- React Router
+- Axios
 
-* Node.js
-* Express.js
-* MongoDB + Mongoose
-* JWT Authentication
-* Node‑cron
+## 📁 Repository structure
 
-### Frontend
-
-* React (CRA)
-* React Router DOM
-* Axios (centralized API instance)
-* Web Vitals
-
-## 🗂️ Project Structure
-
-```
-real-estate-fullstack/
-│
-├── client/              # Frontend (React + Vite)
-├── server/              # Backend (Node.js + Express)
+```text
+Blue-real-Estate/
+├── back/
 │   ├── config/
-│   │   └── db.js        # MongoDB connection
-│   ├── controllers/
-│   │   └── build.cont.js
+│   ├── controller/
 │   ├── jobs/
-│   │   └── rentUpdateJob.js
 │   ├── middleware/
-│   │   └── auth.js
 │   ├── models/
 │   ├── routes/
 │   ├── index.js
-│   └── .env
-│
-├── package.json         # Root scripts
+│   └── package.json
+├── front/
+│   ├── public/
+│   ├── src/
+│   └── package.json
+├── package.json
 └── README.md
 ```
 
-## ⚙️ Installation & Setup
+## ⚙️ Getting started
 
-### 1. Clone the repository
+### 1) Clone
 
 ```bash
 git clone https://github.com/MARWAN-elmasrry/Blue-real-Estate.git
-cd real-estate-fullstack
+cd Blue-real-Estate
 ```
 
-### 2. Install dependencies
+### 2) Install dependencies
 
 ```bash
 npm install
-npm install --prefix server
-npm install --prefix client
+npm install --prefix back
+npm install --prefix front
 ```
 
-### 3. Environment Variables
+### 3) Configure environment
 
-Create a `.env` file inside the `server` folder:
+Create a file at `back/.env`:
 
-```
+```env
 PORT=5000
 CONNECTION_URL=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret
 ```
 
-### 4. Run the project (Frontend + Backend)
+### 4) Run both apps
 
 ```bash
 npm run dev
 ```
 
-This uses **concurrently** to start both servers.
+Or run each app separately:
 
-## 🌐 Frontend Configuration
-
-### Axios Instance
-
-A centralized Axios instance is used for all API requests:
-
-```js
-import axios from "axios";
-
-const api = axios.create({
-  baseURL: "http://localhost:5000/api",
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
-
-export default api;
+```bash
+npm run server
+npm run client
 ```
 
-This ensures:
+## 🔌 API quick reference
 
-* Single API base URL
-* Clean and reusable HTTP calls
-* Easy future environment switching
+Base URL: `http://localhost:5000/api`
 
----
+### Authentication
 
-## 📡 API Documentation
+- `POST /auth/login`
 
-### Auth
-
-#### Admin Login
-
-```
-POST /api/auth/login
-```
-
-**Body:**
+Request body:
 
 ```json
 {
   "admin": "admin_username",
-  "password": "password"
+  "password": "admin_password"
 }
 ```
 
----
+### Buildings and apartments
 
-### Buildings
+> These routes require `Authorization: Bearer <token>`.
 
-#### Add Building
+- `POST /` — create a building
+- `GET /` — list all buildings
+- `GET /:id` — get one building by ID
+- `PUT /:id/apartments/:apartmentNumber` — update an apartment
+- `DELETE /:id/apartments/:apartmentNumber` — clear apartment and set vacant
+- `POST /trigger-rent-update` — trigger annual rent update manually
 
-```
-POST /api/buildings
-```
+## 🔁 Rent update rules
 
-**Body:**
+A rent increase is applied only when all conditions are true:
 
-```json
-{
-  "buildingName": "Tower A",
-  "buildingNumber": 1,
-  "location": "Cairo",
-  "numberOfApartments": 20,
-  "apartmentsPerFloor": 4
-}
-```
+- Apartment status is `Occupied`
+- `contractStartDate` exists
+- `rentIncreasePerYear` is greater than 0
+- Current date matches contract anniversary (month/day)
 
-#### Get All Buildings
+Automatic schedule: daily at **1:00 AM** (server local time).
 
-```
-GET /api/buildings
-```
+## 🤝 Contributing
 
-#### Get Building By ID
-
-```
-GET /api/buildings/:id
-```
+1. Fork the repository
+2. Create a branch (`feat/your-feature`)
+3. Commit your changes
+4. Open a pull request
 
 ---
 
-### Apartments
-
-#### Update Apartment
-
-```
-PUT /api/buildings/:id/apartments/:apartmentNumber
-```
-
-#### Clear Apartment (Make Vacant)
-
-```
-PUT /api/buildings/:id/apartments/:apartmentNumber/clear
-```
-
----
-
-### Rent Updates
-
-#### Manual Rent Update Trigger
-
-```
-POST /api/rent/update
-```
-
-#### Automatic Rent Update (Cron)
-
-* Runs **daily at 1:00 AM**
-* Increases rent based on contract anniversary
-
-## 🔁 Rent Update Logic
-
-* Apartment must be `Occupied`
-* `contractStartDate` must exist
-* `rentIncreasePerYear` > 0
-* Increase applies only on yearly anniversary
-
-## ▶️ Scripts
-
-```json
-"scripts": {
-  "server": "npm run dev --prefix server",
-  "client": "npm run dev --prefix client",
-  "dev": "concurrently \"npm run server\" \"npm run client\""
-}
-```
-
-## 🚀 Future Improvements
-
-* Role‑based access control
-* Dashboard analytics
-* Payment tracking
-* Export reports (PDF / Excel)
-
-## 👨‍💻 Author
-
-**Marwan Elmasrry**
-
----
-
-If you find this project useful, feel free to ⭐ the repository.
+If this project is useful, consider leaving a ⭐ on GitHub.
